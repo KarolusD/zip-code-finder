@@ -1,12 +1,12 @@
 import React from 'react';
+import APIHandler from './components/APIHandler';
 
-function App() {
+const App = () => {
   return (
     <div>
-      <div className="App" />
-      <div className="something" />
+      <APIHandler />
     </div>
   );
-}
+};
 
 export default App;
