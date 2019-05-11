@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
 
-class APIHandler extends React.Component {
+class ApiHandler extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,8 +42,8 @@ class APIHandler extends React.Component {
 
   render() {
     const { items, isLoaded, error } = this.state;
-    return <SearchBar allZipCodes={isLoaded && !error && items} />;
+    return <SearchBar allAddressesInfo={isLoaded && !error && items} />;
   }
 }
 
-export default APIHandler;
+export default ApiHandler;
