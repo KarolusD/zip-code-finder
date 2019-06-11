@@ -1,4 +1,4 @@
-# Project Title
+# ZIP code finder
 
 It is a simple app for finding ZIP code by typing street name. It works in Poland country zone
 

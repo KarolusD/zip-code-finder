@@ -1,8 +1,13 @@
 import React from 'react';
-import ApiHandler from '../ApiHandler';
+import AppProvider from '../AppProvider';
+import Layout from '../Layout';
 
 const App = () => {
-  return <ApiHandler />;
+  return (
+    <AppProvider>
+      <Layout />
+    </AppProvider>
+  );
 };
 
 export default App;

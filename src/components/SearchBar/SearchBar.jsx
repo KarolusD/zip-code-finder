@@ -1,44 +1,50 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/button-has-type */
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Input from '../Input';
+import Button from '../Button';
+import stringNormalize from '../../helpers/stringNormalize';
+import { AppContext } from '../AppProvider';
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: ''
-    };
-    SearchBar.propTypes = {
-      allAddressesInfo: PropTypes.arrayOf(PropTypes.object).isRequired
-    };
+class SearchBar extends Component {
+  state = {
+    search: ''
+  };
 
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+  shouldComponentUpdate(nextProps, nextState) {
+    const { search } = this.state;
+    return search !== nextState.search;
   }
 
-  handleSearch(address) {
+  handleChangeValue = e => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const { value } = e.target;
+    this.setState({ search: value });
+  };
+
+  handleSearch = address => {
+    const { search } = this.state;
+    if (!search) return null;
     this.address = address;
 
-    const { search } = this.state;
-    const addressStringsSplit = `
+    const addressStringsSplit = stringNormalize(`
         ${this.address.ADRES}, 
         ${this.address['KOD POCZTOWY']}
-        ${this.address['MIEJSCOWOŚĆ']}`
+        ${this.address['MIEJSCOWOŚĆ']}`)
       .toLowerCase()
       .split(' ');
 
-    const searchSplit = search.toLowerCase().split(' ');
+    const searchSplit = stringNormalize(search)
+      .toLowerCase()
+      .split(' ');
     let counterWordMatch = 0;
     let isAddressMatch = false;
     for (let i = 0; i < searchSplit.length; i++) {
       let wordMatch = false;
       for (let j = 0; j < addressStringsSplit.length; j++) {
-        if (
-          addressStringsSplit[j].indexOf(searchSplit[i]) > -1 ||
-          !Number.isNaN(Number(searchSplit[i][0]))
-        ) {
+        // Could be also !Number.isNaN(Number(searchSplit[i][0])
+        if (addressStringsSplit[j].indexOf(searchSplit[i]) > -1) {
           wordMatch = true;
           counterWordMatch++;
           break;
@@ -51,41 +57,31 @@ class SearchBar extends React.Component {
       return this.address;
     }
     return null;
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
-
-    const { allAddressesInfo } = this.props;
-    const findedAddressesInfo = allAddressesInfo.filter(this.handleSearch);
-
-    console.log(findedAddressesInfo);
-  }
-
-  handleChange(event) {
-    event.preventDefault();
-
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  }
+    const { apiData, getSearchedData } = this.context;
+    const findedAddressesInfo = apiData.filter(this.handleSearch);
+    getSearchedData(findedAddressesInfo);
+  };
 
   render() {
     const { search } = this.state;
     return (
       <form onSubmit={this.handleSubmit} autoComplete="off">
-        <input
-          placeholder="Wpisz adres..."
+        <Input
+          placeholder="Podaj ulice i miasto (np. ul.Długa, Kraków)"
           type="text"
-          name="search"
-          onChange={this.handleChange}
+          onChangeValue={this.handleChangeValue}
           value={search}
         />
-        <button type="Submit">Szukaj</button>
+        <Button type="Submit" name="Szukaj" />
       </form>
     );
   }
 }
+
+SearchBar.contextType = AppContext;
 
 export default SearchBar;

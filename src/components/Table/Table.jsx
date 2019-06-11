@@ -1,10 +1,20 @@
 import React from 'react';
+import './Table.scss';
+import Thead from './Thead';
+import Tbody from './Tbody';
+import { AppConsumer } from '../AppProvider';
 
-const Table = props => {
+const Table = () => {
   return (
-    <div>
-      <p>siema</p>
-    </div>
+    // eslint-disable-next-line react/jsx-one-expression-per-line
+    <AppConsumer>
+      {context => (
+        <table className="table is-hoverable is-fullwidth">
+          <Thead />
+          <Tbody searchedData={context.searchedData} />
+        </table>
+      )}
+    </AppConsumer>
   );
 };
 
