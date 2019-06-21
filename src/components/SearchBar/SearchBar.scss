@@ -1,0 +1,14 @@
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/layout/_all.sass';
+
+form {
+  margin-bottom: 32px;
+}
+
+.has-addons {
+  align-content: stretch !important;
+}
+
+p.control--input {
+  flex: 1 !important;
+}

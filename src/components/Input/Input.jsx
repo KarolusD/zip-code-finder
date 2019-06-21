@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { pure } from 'recompose';
+import './Input.scss';
 
 const Input = props => {
   const { placeholder, type, value, onChangeValue } = props;
 
   return (
-    <input
-      placeholder={placeholder}
-      type={type}
-      onChange={onChangeValue}
-      value={value}
-    />
+    <div className="field">
+      <div className="control">
+        <input
+          className="input is-primary"
+          placeholder={placeholder}
+          type={type}
+          onChange={onChangeValue}
+          value={value}
+        />
+      </div>
+    </div>
   );
 };
 

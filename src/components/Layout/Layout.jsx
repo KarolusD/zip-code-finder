@@ -1,13 +1,16 @@
 import React from 'react';
 import SearchBar from '../SearchBar';
 import Table from '../Table';
+import './Layout.scss';
 
 const Layout = () => {
   return (
-    <>
-      <SearchBar />
-      <Table />
-    </>
+    <div className="section">
+      <div className="container">
+        <SearchBar />
+        <Table />
+      </div>
+    </div>
   );
 };
 

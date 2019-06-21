@@ -1,0 +1,16 @@
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/elements/button.sass';
+
+button {
+  font-family: 'Montserrat', 'sans-serif';
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  line-height: normal !important;
+  background: #009582 !important;
+  letter-spacing: 1px;
+  transition: background 300ms ease-in-out;
+  &:hover {
+    background: #3cad74 !important;
+  }
+}

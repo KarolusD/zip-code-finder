@@ -1,2 +1,44 @@
 @import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/sass/elements/table.sass';
+
+table {
+  align-items: center;
+  border-collapse: collapse;
+}
+
+th {
+  font-family: 'Montserrat', 'sans-serif';
+  font-weight: 700;
+  font-size: 0.8rem;
+  vertical-align: middle !important;
+  color: #176173 !important;
+  text-transform: uppercase;
+  border-bottom: 1px solid #d1dbd6 !important;
+  abbr::selection {
+    background: #68edcb !important; /* WebKit/Blink Browsers */
+  }
+}
+
+td {
+  font-family: 'Montserrat', 'sans-serif';
+  font-weight: 500;
+  font-size: 1rem;
+  vertical-align: middle !important;
+  color: #2f4858 !important;
+  border-bottom: 1px solid #d1dbd6 !important;
+  &::selection {
+    background: #68edcb !important; /* WebKit/Blink Browsers */
+  }
+}
+
+abbr[title] {
+  border-bottom: none !important;
+  cursor: inherit !important;
+  text-decoration: none !important;
+}
+
+tbody {
+  tr:hover {
+    background: #f5f8f7 !important;
+  }
+}

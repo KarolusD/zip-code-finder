@@ -5,6 +5,7 @@ import Input from '../Input';
 import Button from '../Button';
 import stringNormalize from '../../helpers/stringNormalize';
 import { AppContext } from '../AppProvider';
+import './SearchBar.scss';
 
 class SearchBar extends Component {
   state = {
@@ -70,13 +71,22 @@ class SearchBar extends Component {
     const { search } = this.state;
     return (
       <form onSubmit={this.handleSubmit} autoComplete="off">
-        <Input
-          placeholder="Podaj ulice i miasto (np. ul.Długa, Kraków)"
-          type="text"
-          onChangeValue={this.handleChangeValue}
-          value={search}
-        />
-        <Button type="Submit" name="Szukaj" />
+        <div className="level-item">
+          <div className="field has-addons">
+            <p className="control control--input">
+              <Input
+                className="input is-primary"
+                placeholder="Podaj ulice i miasto (np. ul. Długa, Kraków)"
+                type="text"
+                onChangeValue={this.handleChangeValue}
+                value={search}
+              />
+            </p>
+            <p className="control">
+              <Button type="Submit" name="Szukaj" />
+            </p>
+          </div>
+        </div>
       </form>
     );
   }

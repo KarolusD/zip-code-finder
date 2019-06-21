@@ -2,9 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { pure } from 'recompose';
+import './Button.scss';
 
 const Button = ({ type, name }) => {
-  return <button type={type}>{name}</button>;
+  return (
+    <button className="button is-primary" type={type}>
+      {name}
+    </button>
+  );
 };
 
 Button.propTypes = {
