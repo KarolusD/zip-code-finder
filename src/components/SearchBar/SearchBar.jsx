@@ -19,7 +19,6 @@ class SearchBar extends Component {
 
   handleChangeValue = e => {
     e.preventDefault();
-    console.log(e.target.value);
     const { value } = e.target;
     this.setState({ search: value });
   };
@@ -76,7 +75,7 @@ class SearchBar extends Component {
             <p className="control control--input">
               <Input
                 className="input is-primary"
-                placeholder="Podaj ulice i miasto (np. ul. Długa, Kraków)"
+                placeholder="Podaj ulice i miasto (np. Długa Kraków)"
                 type="text"
                 onChangeValue={this.handleChangeValue}
                 value={search}
